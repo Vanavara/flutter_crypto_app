@@ -1,4 +1,5 @@
 import 'package:crypto_app/features/coins_list/screens/coins_list_screen.dart';
+import 'package:crypto_app/features/coins_list/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Crypto App',
       theme: ThemeData.dark(),
-      home: const CoinsListScreen(),
+      home: const SplashScreen(),
     );
   }
 }
