@@ -21,13 +21,16 @@ class CoinsRepository{
       return pricesData.entries.map((entry) {
         final coinName = entry.key;
         final price = (entry.value as Map<String, dynamic>)[currency];
+        final iconData = iconsData[coinName];
         final iconPath = iconsData[coinName]?['ImageUrl'];
         final iconUrl = iconPath != null ? '$iconBaseUrl$iconPath' : null;
+        final symbol = iconData?['Symbol'] ?? '';
 
         return CryptoCoin(
           name: coinName, 
           price: price.toDouble(),
           iconUrl: iconUrl,
+          symbol: symbol,
           );
       }).toList();
     } catch (e) {
