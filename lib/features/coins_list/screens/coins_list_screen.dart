@@ -1,6 +1,7 @@
 import 'package:crypto_app/features/coins_list/models/crypto_coin.dart';
 import 'package:crypto_app/features/coin_detail/screens/coin_detail_screen.dart';
 import 'package:crypto_app/features/coins_list/repositories/coins_repository.dart';
+import 'package:crypto_app/features/coins_list/widgets/crypto_search_delegate.dart';
 import 'package:flutter/material.dart';
 
 class CoinsListScreen extends StatefulWidget {
@@ -55,6 +56,15 @@ class _CoinsListScreenState extends State<CoinsListScreen> {
       appBar: AppBar(
         title: const Text('Цена крипты'),
         actions: [
+          IconButton(
+            icon: const Icon(Icons.search),
+            onPressed: () {
+              showSearch(
+                context: context,
+                delegate: CryptoSearchDelegate(_coins ?? [], _selectedCurrency),
+              );
+            },
+          ),
           DropdownButton<String> (
             value: _selectedCurrency,
             dropdownColor: Colors.grey[900],
@@ -86,7 +96,10 @@ class _CoinsListScreenState extends State<CoinsListScreen> {
                   onTap: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (_) =>CoinDetailScreen(coin: coin),
+                        builder: (_) =>CoinDetailScreen(
+                          coin: coin,
+                          currency: _selectedCurrency,
+                          ),
                         ),
                     );
                   },

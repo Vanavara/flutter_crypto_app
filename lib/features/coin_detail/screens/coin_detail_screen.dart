@@ -3,8 +3,13 @@ import 'package:crypto_app/features/coins_list/models/crypto_coin.dart';
 
 class CoinDetailScreen extends StatelessWidget {
   final CryptoCoin coin;
+  final String currency;
 
-  const CoinDetailScreen({super.key, required this.coin});
+  const CoinDetailScreen({
+    super.key, 
+    required this.coin,
+    required this.currency,
+    });
 
   @override
   Widget build(BuildContext context) {
@@ -30,10 +35,9 @@ class CoinDetailScreen extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             Text(
-              'Цена: ${coin.price.toStringAsFixed(2)} USD',
+              'Цена: ${coin.price.toStringAsFixed(2)} $currency',
               style: const TextStyle(fontSize: 20),
             ),
-            // Добавим еще инфу, если есть
             if (coin.symbol.isNotEmpty) ...[
               const SizedBox(height: 8),
               Text('Символ: ${coin.symbol.toUpperCase()}'),
